@@ -22,6 +22,7 @@ let cart = []
 
 //abrir modal carrinho
 cartBtn.addEventListener('click', () =>{
+  updateCartModal()
   cartModal.style.display = 'flex';
 })
 
@@ -56,13 +57,41 @@ function addToCart(name, price){
   if(existingItem){
     existingItem.quantity += 1;
     return;
+  } else{ 
+    cart.push({
+      name, 
+      price, 
+      quantity:1,
+    })
   }
-  cart.push({
-    name, 
-    price, 
-    quantity:1,
-  })
+
+  updateCartModal()
 }
 
 //atualiza carrinho
-function update
+function updateCartModal(){
+  cartItemsContainer.innerHTML = ""
+  let total = 0
+
+  cart.forEach(item => {
+    const cartItemElement = document.createElement("div")
+
+    cartItemElement.innerHTML = `
+      <div>
+        <div>
+          <p>${item.name}</p>
+          <p>${item.quantity}</p>
+          <p>${item.price}</p>
+        </div>
+
+        <div>
+          <button>
+            Remover
+          </button>
+        </div>
+      </div>
+    `
+
+    cartItemsContainer.appendChild(cartItemElement)
+  })
+}
