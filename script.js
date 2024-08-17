@@ -132,3 +132,23 @@ function removeItemCart(name){
 
   }
 }
+
+addresInput.addEventListener('input', (event)=> {
+  let inputValue = event.target.value;
+
+  if(inputValue !== ""){
+    addresInput.classList.remove('border-red-500')
+    addresInput.classList.add('hidden')
+  }
+})
+
+checkoutBtn.addEventListener('click', function(){
+  if(cart.length === 0) return;
+  if(addresInput.value === ""){
+    addressWarn.classList.remove("hidden")
+    addresInput.classList.add('border-red-500')
+    return;
+  }
+})
+
+function 
