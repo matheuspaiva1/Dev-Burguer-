@@ -1,5 +1,3 @@
-console.log('teste')
-
 const menu = document.getElementById('menu')
 
 const cartBtn = document.getElementById('cart-btn')
@@ -20,6 +18,8 @@ const addresInput = document.getElementById('addres')
 
 const addressWarn = document.getElementById('address-warn')
 
+let cart = []
+
 //abrir modal carrinho
 cartBtn.addEventListener('click', () =>{
   cartModal.style.display = 'flex';
@@ -36,11 +36,33 @@ closeModalBtn.addEventListener('click', () =>{
   cartModal.style.display = 'none';
 })
 
+menu.addEventListener('click', function(event){
+  //console.log(event.target)
 
+  let parentButton = event.target.closest('.add-to-cart-btn')
 
+  if(parentButton){
+    const name = parentButton.getAttribute("data-name")
+    const price = parseFloat(parentButton.getAttribute("data-price"))
+    // add no carrinho
+    addToCart(name, price)
+  }
+})
 
+// adicionar ao carrinho
+function addToCart(name, price){
+  const existingItem = cart.find(item => item.name === name)
 
+  if(existingItem){
+    existingItem.quantity += 1;
+    return;
+  }
+  cart.push({
+    name, 
+    price, 
+    quantity:1,
+  })
+}
 
-
-
-console.log(menu)
+//atualiza carrinho
+function update
