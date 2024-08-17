@@ -25,6 +25,17 @@ cartBtn.addEventListener('click', () =>{
   cartModal.style.display = 'flex';
 })
 
+//fechar modal
+cartModal.addEventListener('click', (event) =>{
+  if(event.target == cartModal){
+    cartModal.style.display = 'none';
+  }
+})
+
+closeModalBtn.addEventListener('click', () =>{
+  cartModal.style.display = 'none';
+})
+
 
 
 
